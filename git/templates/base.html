@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <title>Welcome!</title>
+    <link rel="stylesheet" href="/static/Main.css" type="text/css">
+     <link href="/static/1.js">
+    <style>
+        div>ul{
+
+               list-style:none;
+            line-height: 25px;
+            margin-left: 105px;
+            padding:0 0 0 0;
+
+        }
+        div>li{
+
+             height: 30px;width: 200px;background:lightgray;color:gray;text-align: center;
+            float:left;
+
+        }
+        div>ul > li > ul{
+
+            -webkit-transform: rotateX(90deg);
+            transition-duration: 1s;
+        }
+        div>ul>li:hover>ul{
+
+            -webkit-transform: rotateX(0);
+            /*-webkit-perspective: 600px;*/
+            transition-duration: 1s;
+        }
+    </style>
+</head>
+<body>
+<div style="height: 100px">
+    <div style="width: 400px;height: 100px;margin-left: 1116px;">
+        <a href="{% url "main:index" %}" style="text-decoration-line: none"><span style="color: lightgray;font-size: 40px">Welcome!</span></a>
+        <a href="{% url "main:user" %}"><input type="button" class="main_button main_button_hover" value="Sign Up"></a>
+        {% if loginmail == None %}
+        <a href="{% url "main:login" %}"><input type="button" class="main_button main_button_hover" value="Sign in" style="margin-top:17px;margin-left: 10px"></a>
+            {% else %}
+            <ul style="margin-top: 17px">
+                <li>{{ loginmail }}
+                    <ul style="margin-left:0">
+                        <li><a href="{% url 'main:logout' %}" class="link_text link_text_hover">Logout</a></li>
+                </ul>
+                    </li>
+            </ul>
+        {% endif %}
+    </div>
+</div>
+<hr>
+</body>
+{% block content %}
+{% endblock %}
+</html>

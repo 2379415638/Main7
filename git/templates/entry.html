@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Content</title>
+</head>
+{% extends 'base.html' %}
+<body>
+{% block content %}
+    <span style="font-weight: bold;color: gray;font-size: larger">{{ title }}</span>
+    <ul>
+    {% for entry in entries %}
+        <li style="color: lightgray">
+            <div style="height: 300px;width: 400px;">
+            {{ entry.content_title }}
+            --<a  style="text-decoration-line: none;color: lightgray" href={{ entry.link_href }}>{{ entry.filename }}</a>
+        <ul>
+            <li><span style="color: gray;font-weight: bold">{{ entry.content }}</span>
+                </li>
+
+        </ul>
+            </div>
+        </li>
+
+    {% endfor %}
+    </ul>
+{% endblock %}
+</body>
+</html>

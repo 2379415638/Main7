@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>login</title>
+</head>
+{% extends 'base.html' %}
+<body>
+{% block content %}
+    <div style="border: 1px solid cadetblue;width: 500px;text-align: center;margin-left: 500px">
+    {{ response }}
+    <form method="post">
+        {% csrf_token %}
+    {{ form.as_p }}
+        <input type="submit" value="Sign in" class="sign_up_or_in_button sign_up_or_in_button_hover">
+    </form>
+    </div>
+{% endblock %}
+</body>
+</html>

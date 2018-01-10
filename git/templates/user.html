@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>User</title>
+</head>
+{% block content %}
+
+<body>
+    <p style="text-align: center;color:gray">Sign Up</p>
+    <div style="border: 1px solid cadetblue;width: 500px;text-align: center;margin-left: 500px">
+         {{ response }}
+    <form method="post" action="{% url "main:user" %}">
+    {% csrf_token %}
+        <p><img src="/static/mail.jpg" style="height: 30px;width: 30px" >{{ form.usermail }}<span id="p_mail"></span></p>
+        <p><img src="/static/password.jpg" style="height: 30px;width: 30px">{{ form.userpass }}</p>
+        <p><img src="/static/account.jpg" style="height: 30px;width: 30px">{{ form.username}}</p>
+        <input name="identify" type="text" placeholder="Identify" style=" width: 200px;
+    height: 50px;
+    border: 1px solid lightblue;
+    border-radius: 10px;margin-bottom: 5px">
+        {{ str }}
+        <input type="button" value="Send" class="send_button send_button_hover" id="send" onclick="send_mail()">
+        <input type="submit" value="Sign Up" class="sign_up_or_in_button sign_up_or_in_button_hover">
+    </form>
+    </div>
+     <script>
+     var list = ['@qq.com','@gmail.com','@163.com'];
+     function send_mail(){
+        var response_mail = document.getElementById("p_mail");
+        var input_mail = document.getElementById("mail");
+        var input_pass = document.getElementById("pass");
+        var input_name = document.getElementById("name");
+        var usermail = input_mail.value;
+        var userpass = input_pass.value;
+        var username = input_name.value;
+        if (response_mail.innerText === '√'){
+            window.location = '/send'+'/'+usermail+'/'+userpass+'/'+username+'/';
+        }
+        else{
+            alert("Error");
+        }
+     }
+function mail_check() {
+         var input_mail = document.getElementById("mail");
+         var response_mail = document.getElementById("p_mail");
+         var str = input_mail.value;
+         var check = false;
+         var check_str = "";
+         var i;
+         for (i = 0; i < str.length; i++) {
+             if (str[i] === '@') {
+                 break;
+             }
+         }
+         for (; i < str.length; i++) {
+             check_str += str[i];
+         }
+         for (i = 0; i < list.length; i++) {
+             if (list[i] === check_str) {
+                 check = true;
+                 break;
+             }
+         }
+         if (str[0] === '@') {
+             check = false;
+         }
+         if (check) {
+              response_mail.innerText = "√";
+         }
+         else {
+            response_mail.innerText = "×";
+         }
+     }
+     function change_input_mail_abled(){
+         var usermail = document.getElementById("mail");
+         if (usermail.value !== ""){
+             usermail.setAttribute("readonly","true");
+         }
+     }
+     change_input_mail_abled();
+        </script>
+</body>
+{% endblock %}

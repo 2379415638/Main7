@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Welcome!</title>
+</head>
+{% extends 'base.html' %}
+{% block content %}
+    <style>
+</style>
+    {% for title in titles %}
+ <a href="{% url 'main:content' title.id%}" style="text-decoration-line: none">
+            <div style="border: 2px solid lightgray;width: 300px;height: 150px;float: left">
+           <span style="margin-left: 125px;color: gray;font-weight: bold;">{{ title }}</span>
+            <hr style="color: lightgray;border:1px solid">
+            <div style="width: 300px;height: 110px;text-align: center"><span style="color: gray">隐藏您的位置</span></div>
+           </div>
+</a>
+    {% endfor %}
+{% endblock %}
+</html>
